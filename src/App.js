@@ -1,12 +1,20 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import LogInForm from './components/LogInForm';
 
 //Hello by Artem Nersesian
 //Hello by Olena
 
+
+
 function App() {
+  
   return (
-    <LogInForm/>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/' element = {<LogInForm/>}/>
+    </Routes>
+    </BrowserRouter>
   );
 }
 

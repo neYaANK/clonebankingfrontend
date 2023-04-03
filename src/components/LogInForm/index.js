@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styles from './LogInForm.module.css';
 import cx from 'classnames';
+import AuthService from '../../services/auth.service';
+import Account from '../Account';
 
 const initialState = {
     phone: '',
@@ -8,6 +10,8 @@ const initialState = {
 
     phoneIsInvalid: false,
     emailIsInvalid: false,
+
+    currentUser: {}
 };
 
 const phoneValidationPattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/; //This will match phone numbers input in the following formats:
@@ -16,7 +20,7 @@ const phoneValidationPattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0
                                                                                             // +80978887766
                                                                                             // 097-888-7766
                                                                                             // (097) 888-7766
-const passwordValidationPattern = /^(?=.*[0-9])[a-zA-Z0-9]{6,16}$/; // At least 1 digit, 6-16 symbols length
+const passwordValidationPattern = /^[a-zA-Z0-9]{6,16}$/; //6-16 letters length
 
 class LogInForm extends Component {
     constructor(props) {
@@ -24,11 +28,29 @@ class LogInForm extends Component {
         this.state = { ...initialState }
     }
 
+    componentDidMount(){}
+
     handleForm = (event) => {
+    //  console.log('handleform');
+       
         event.preventDefault();
         event.target.reset();
-        this.setState({ ...initialState })
+
+        AuthService.login(this.state.phone, this.state.password)
+        .then(response => {
+            //console.log(response.data);
+            this.setState({currentUser: response.data });
+           
+            // спрацьовує за другим разом????
+            alert(this.state.currentUser.name + '\n'+this.state.currentUser.surname + '\n' + this.state.currentUser.phoneNumber);
+            //console.log(this.state.currentUser.name);
+        })
+        .catch((error)=>{
+            console.log(error);
+         });
+
     }
+
     handleInput = (validationPattern, warningMessage) => ({ target }) => {
         const valid = target.value.match(validationPattern);
         this.setState({
@@ -44,14 +66,14 @@ class LogInForm extends Component {
     }
 
     render() {
-        const {phone, password, phoneIsInvalid,passwordIsInvalid} = this.state;
+        const {phone, password, phoneIsInvalid, passwordIsInvalid, currentUser} = this.state;
             
         const phoneClass = cx(styles.input, { [styles.invalid]: phoneIsInvalid });
         const passwordClass = cx(styles.input, { [styles.invalid]: passwordIsInvalid });
 
         return (
             <form className={styles.form} onSubmit={this.handleForm}>
-                <h1>Log In form</h1>
+                <h1>LogIn form</h1>
                 
                 <input className={phoneClass}
                     value={phone}
@@ -63,7 +85,7 @@ class LogInForm extends Component {
                 />
                 <input className={passwordClass}
                     value={password}
-                    onChange={this.handleInput(passwordValidationPattern, "Пароль повинен містити принаймні 1 цифру\nДовжина паролю від 6 до 16 символів")}
+                    onChange={this.handleInput(passwordValidationPattern, "Довжина паролю від 6 до 16 літер")}
                     type="password"
                     name="password"
                     placeholder="Пароль"
@@ -72,7 +94,7 @@ class LogInForm extends Component {
                
                 <input className={styles.input}
                     type="submit"
-                    value="Send"
+                    value="Login"
                 />
 
             </form>
