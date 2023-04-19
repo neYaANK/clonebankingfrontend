@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './LogInForm.module.css';
 import cx from 'classnames';
 import AuthService from '../../services/auth.service';
-import Account from '../Account';
 
 const initialState = {
     phone: '',
@@ -11,7 +11,6 @@ const initialState = {
     phoneIsInvalid: false,
     emailIsInvalid: false,
 
-    currentUser: {}
 };
 
 const phoneValidationPattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/; //This will match phone numbers input in the following formats:
@@ -31,24 +30,15 @@ class LogInForm extends Component {
     componentDidMount(){}
 
     handleForm = (event) => {
-    //  console.log('handleform');
-       
         event.preventDefault();
         event.target.reset();
 
-        AuthService.login(this.state.phone, this.state.password)
-        .then(response => {
-            //console.log(response.data);
-            this.setState({currentUser: response.data });
-           
-            // спрацьовує за другим разом????
-            alert(this.state.currentUser.name + '\n'+this.state.currentUser.surname + '\n' + this.state.currentUser.phoneNumber);
-            //console.log(this.state.currentUser.name);
-        })
-        .catch((error)=>{
-            console.log(error);
-         });
+        AuthService.login(this.state.phone, this.state.password);
 
+        const user = AuthService.getCurrentUser();
+
+        alert(user.id +'\n' + user.name + '\n'+user.surname + '\n' + user.phoneNumber + '\n' + user.token);
+       console.log(user.token);
     }
 
     handleInput = (validationPattern, warningMessage) => ({ target }) => {
@@ -91,11 +81,13 @@ class LogInForm extends Component {
                     placeholder="Пароль"
                     required
                 />
-               
-                <input className={styles.input}
+            
+               <input className={styles.input}
                     type="submit"
                     value="Login"
                 />
+               
+                
 
             </form>
         );

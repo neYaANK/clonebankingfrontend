@@ -1,0 +1,24 @@
+.container{
+    display: block;
+    
+}
+
+.details{
+    display:flex;
+}
+
+.contacts{
+    display:flex;
+}
+img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+.block{
+    display: flex;
+    flex-flow: column wrap;
+}
+div{
+    margin-right: 100px;
+}
