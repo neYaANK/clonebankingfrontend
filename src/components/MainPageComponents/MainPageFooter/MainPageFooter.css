@@ -1,0 +1,16 @@
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+    height: 10%;
+    background-color: white;
+}
+
+.footerLink {
+    text-decoration: none;
+    color: gray;
+    margin-right: 30px;
+    font-size: 14px;
+}

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import styles from './UploadIcon.module.css';
-import AuthService from '../../services/auth.service';
+import AuthService from '../services/auth.service';
 
 // завантаження фото на сервер - у процесі розробки
 

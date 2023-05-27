@@ -1,0 +1,69 @@
+.logo__two {
+    width: 100px;
+    height: 51px;
+}
+.headerLink {
+    color: white;
+    text-decoration: none;
+}
+.image {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: 10px 0px 0px 10px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(3, 18, 62);
+    height: 75px;
+    align-items: center;
+}
+
+.searchBar {
+    height: 50%;
+    width: 350px;
+    background-color: rgb(71, 3, 181);
+    color: white;
+}
+
+.currencyRate {
+    color: white;
+}
+
+/*
+.burgerMenu {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+    position: relative;
+}*/
+
+/*
+.burgerMenu:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 20px;
+    background-color: black;
+    height: 2px;
+}
+
+.burgerMenu span {
+    content: '';
+    position: absolute;
+    top: 9px;
+    width: 20px;
+    background-color: black;
+    height: 2px;
+}
+
+.burgerMenu:after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    width: 20px;
+    background-color: black;
+    height: 2px;
+}*/

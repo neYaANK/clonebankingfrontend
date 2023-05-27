@@ -1,0 +1,28 @@
+.header__flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 6px 168px 6px 35px;
+  }
+  
+  .body__flex__logo__imeg {
+    height: 61px;
+    width: 120px;
+    pointer-events: none;
+  }
+  
+  .header__flex__text__blok__value {
+    margin-right: 76px;
+  }
+  
+  .header__flex__text__blok {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .header__flex__text__blok__select__list {
+    border: 0px;
+  }
+  

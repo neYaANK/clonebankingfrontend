@@ -1,0 +1,65 @@
+
+.body__flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.body__flex__login__form {
+  border: 1px solid black;
+  border-radius: 15px;
+  width: 498px;
+  height: 496px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.body__flex__imeg__logo {
+  height: 676px;
+  width: 702px;
+  pointer-events: none;
+}
+
+.body__flex__login__form__title {
+  font-size: 24px;
+  margin: 27px 0px 35px 0px;
+}
+
+.body__flex__login__form__container__input {
+  font-size: 15px;
+  border-bottom: 1px solid black;
+  color: #848484;
+  margin-bottom: 48px;
+}
+
+.body__flex__login__form__container__chec {
+  font-size: 15px;
+  color: black;
+  margin-bottom: 35px;
+}
+
+.body__flex__login__form__container__button__repair {
+  margin: 0px 0px 20px 90px;
+}
+
+.body__flex__login__form__container__button__exit {
+  margin-bottom: 39px;
+  width: 400px;
+  height: 50px;
+  background-color: #E1DDDD;
+  font-size: 19px;
+  border: 0px;
+  border-radius: 10px;
+}
+
+.body__flex__login__form__container__input input {
+  border: 0px;
+  margin: 3px;
+}
+
+.body__flex__login__form__container__button__reg {
+  margin: 0px 0px 54px 150px;
+}

@@ -1,0 +1,157 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: #F6F8FF;
+}
+
+.upperLine {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+.upperLine button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D8DEF8;
+    border-style: none;
+    border-radius: 8px;
+    width: 15%;
+}
+
+.upperLine button img {
+    margin-right: 60px;
+}
+
+.upperLine button {
+    height: 56px;
+}
+
+.secondLine {
+    display: flex;
+    justify-content: space-around;
+}
+
+.mainArea {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 15px;
+    margin-right: 0;
+    border-radius: 7px;
+}
+
+.card {
+    width: 80%;
+    height: 120px;
+    background-color: rgb(84, 21, 222);
+    color: white;
+    border-radius: 8px;
+    font-size: 12px;
+    padding: 15px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+    padding: 10px;
+    margin-right: 0;
+}
+
+.cardInfo {
+    display: flex;
+    white-space: nowrap;
+    height: 40%;
+    margin-right: 0;
+}
+
+.selectedCard {
+    flex: 1;
+    background-color: #2C409C;
+    color: #FFFFFF;
+    border-radius: 8px;
+    font-size: 12px;
+    padding: 15px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cardOperations {
+    border: .5px solid black;
+    border-radius: 8px;
+    font-size: 18px;
+    padding: 20px;
+    margin-right: 0;
+}
+
+.statisticsTextHeader {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.statistics {
+    border: .5px solid black;
+    padding: 20px;
+    border-radius: 8px;
+    height: 60%;
+    width: 100%;
+    margin-top: 10px;
+    margin-right: 0;
+}
+
+.span {
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 14px;
+    margin-bottom: 8px;
+}
+
+.cardsList {
+    width: 35%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 0;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    margin: 10px 0px 0px 10px;
+}
+
+.body {
+    margin-top: 24px;
+    text-align: left;
+    font-size: 35px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-right: 0;
+}
+
+.addCard {
+    color: #FFFFFF;
+    border: 0px;
+    border-radius: 6px;
+    padding: 0 10px 3px 10px;
+    background: #3F5CE0;
+    text-decoration: none;
+}
+

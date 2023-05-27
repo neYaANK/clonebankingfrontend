@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AuthService from '../../services/auth.service';
+import AuthService from '../services/auth.service';
 import styles from './ChangeUserPhone.module.css';
 
 const phoneValidationPattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/; //This will match phone numbers input in the following formats:

@@ -1,0 +1,35 @@
+.credits__container{
+    display: flex;
+    flex-direction: column;
+}
+.credits__title{
+    margin: 20px;
+}
+.credits__options__buttons{
+    margin: 20px;
+}
+.credits__list{
+    display: flex;
+    flex-direction: column;
+}
+.credit__view__blok{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 200px;
+    height: 250px;
+    margin: 20px;
+    text-align: center;
+}
+.credits__archiv__title{
+    margin-left: 20px;
+}
+.credits__archiv__table{
+    margin: 20px;
+    text-align: center;
+}
+th{
+    border: 1px solid black;
+}
+td{
+    border: 1px solid black;
+}

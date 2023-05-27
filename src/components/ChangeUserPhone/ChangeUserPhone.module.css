@@ -1,15 +1,17 @@
-.block{
+.block {
     display: flex;
     flex-flow: column wrap;
     align-items: center;
     height: 50%;
     width: 50%;
 }
-input{
+
+input {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.label{
+
+.label {
     margin-top: 10px;
     margin-bottom: 10px;
 }

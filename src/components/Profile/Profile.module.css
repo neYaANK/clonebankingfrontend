@@ -1,24 +1,28 @@
-.container{
+.container {
     display: block;
-    
+
 }
 
-.details{
-    display:flex;
+.details {
+    display: flex;
 }
 
-.contacts{
-    display:flex;
+.contacts {
+    display: flex;
 }
-img{
+
+.img {
     height: 100px;
     width: 100px;
     border-radius: 50%;
 }
-.block{
+
+.link {
+    text-decoration: none;
+    color: blue;
+}
+
+.block {
     display: flex;
     flex-flow: column wrap;
-}
-div{
-    margin-right: 100px;
 }

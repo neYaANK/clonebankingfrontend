@@ -1,0 +1,36 @@
+.form__addCard {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form__addCard__select {
+    width: 400px;
+    margin: 15px 45px 0px 15px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.form__addCard__button {
+    width: 400px;
+    margin: 15px 45px 0px 15px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.form__addCard__input {
+    width: 400px;
+    margin: 15px 45px 0px 15px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.form__addCard__button {
+    width: 400px;
+    margin: 15px 45px 0px 15px;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 20px;
+}
