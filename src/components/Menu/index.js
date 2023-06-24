@@ -1,9 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import AuthService from '../services/auth.service';
 import './Menu.css'
 
 const Menu = ({ active }) => {
-
+    const navigate = useNavigate();
     return (
         <div class={active ? 'menu' : 'menuactive'}>
             <div className="menu__content">

@@ -1,11 +1,12 @@
-
-.footer {
+.footer__main {
     display: flex;
     flex-direction: row;
     position: fixed;
     bottom: 0;
-    height: 10%;
+    height: 5%;
+    width: 95%;
     background-color: white;
+    margin-left: 50px;
 }
 
 .footerLink {

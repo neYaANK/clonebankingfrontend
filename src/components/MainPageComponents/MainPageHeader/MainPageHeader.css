@@ -2,10 +2,15 @@
     width: 100px;
     height: 51px;
 }
+
 .headerLink {
     color: white;
     text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
 }
+
+
 .image {
     height: 50px;
     width: 50px;
@@ -21,49 +26,50 @@
     align-items: center;
 }
 
+.header__links{
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .searchBar {
     height: 50%;
-    width: 350px;
-    background-color: rgb(71, 3, 181);
+    width: 570px;
+    background-color:#192459;
     color: white;
 }
 
 .currencyRate {
     color: white;
+    font-size: 18px;
 }
 
-/*
-.burgerMenu {
-    width: 30px;
-    height: 30px;
-    margin-left: 20px;
-    position: relative;
-}*/
-
-/*
-.burgerMenu:before {
-    content: '';
+.menu__profile {
+    color: #0F0F0F;
     position: absolute;
-    top: 0;
-    width: 20px;
-    background-color: black;
-    height: 2px;
+    list-style: none;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    right: 50px;
 }
 
-.burgerMenu span {
-    content: '';
-    position: absolute;
-    top: 9px;
-    width: 20px;
-    background-color: black;
-    height: 2px;
+.menu__profile li {
+    margin-top: 15px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: start;
 }
 
-.burgerMenu:after {
-    content: '';
-    position: absolute;
-    bottom: 10px;
-    width: 20px;
-    background-color: black;
-    height: 2px;
-}*/
+.go__out {
+    color: #C84040;
+}
+
+.icon {
+    margin-right: 10px;
+}

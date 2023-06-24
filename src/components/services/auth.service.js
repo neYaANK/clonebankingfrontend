@@ -4,34 +4,56 @@ const API_URL_AUTH = "http://localhost:8080/auth/";
 const API_URL_USERS = "http://localhost:8080/users/";
 const API_URL_CARDS = "http://localhost:8080/cards/";
 const API_URL_CREDIT = "http://localhost:8080/credit/";
+const API_URL_PAYMENT = "http://localhost:8080/payment/";
 const API_URL_CURRENCY = "http://localhost:8080/public/exchange/";
 
 class AuthService {
 
+    // authentification methods
+
+    // login(phoneNumber, password) {
+    //     console.log("login start");
+
+    //     axios
+    //     .post(API_URL_AUTH + 'signin', {
+    //         phoneNumber,
+    //         password
+    //     })
+    //     .then((response)=> {                           //put first token to localStorage
+    //         const user = JSON.stringify(response.data)
+    //         localStorage.setItem("firstToken", JSON.parse(user).token) 
+    //         console.log(user);
+    //         console.log(localStorage.getItem("firstToken"));       
+    //     } )
+    //     .catch((error) => console.log(error));
+
+    //     console.log("FIRST_TOKEN : ");
+    //     console.log(localStorage.getItem("firstToken"));
+    //     console.log("login end");
+    // }
+
     login(phoneNumber, password) {
         console.log("login start");
 
-        axios
+        return axios
             .post(API_URL_AUTH + 'signin', {
                 phoneNumber,
                 password
             })
-            .then((response) => {                                   //put first token to localStorage
+            .then((response) => {                           //put first token to localStorage
                 const user = JSON.stringify(response.data)
                 localStorage.setItem("firstToken", JSON.parse(user).token)
+                console.log(user);
+                console.log(localStorage.getItem("firstToken"));
             })
             .catch((error) => console.log(error));
-
-        console.log("FIRST_TOKEN : ");
-        console.log(localStorage.getItem("firstToken"));
-
-        console.log("login end");
-
     }
+
+
     verify(code) {
         console.log("verify start");
         const token = localStorage.getItem("firstToken");
-        axios
+        return axios
             .post(API_URL_AUTH + 'verify', {
                 code: code
             },
@@ -47,20 +69,16 @@ class AuthService {
             })
             .catch((error) => console.log(error));
 
-        console.log("verify end");
-
-        this.setUserFullInfo();
-        this.setUserImage();
-        this.setUserAllCards();
-        this.setUserAllCredits();//
     }
+
+    //user info methods
 
     setUserFullInfo() {
         console.log("setUserFullInfo start");
         const id = this.getCurrentUser().id;
         const token = this.getCurrentUser().token;
 
-        axios
+        return axios
             .get(API_URL_USERS + id, {
                 headers: {
                     "Authorization": `Bearer ${token}`
@@ -74,7 +92,6 @@ class AuthService {
                 console.log(this.getUserFullInfo())
             })
             .catch((error) => console.log(error));
-        console.log("setUserFullInfo end");
     }
 
 
@@ -84,7 +101,7 @@ class AuthService {
         const id = this.getCurrentUser().id;
         const token = this.getCurrentUser().token;
 
-        axios.get(API_URL_USERS + id + "/image", {
+        return axios.get(API_URL_USERS + id + "/image", {
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -96,9 +113,7 @@ class AuthService {
                 );
                 localStorage.setItem("userImage", base64);
             })
-            .catch((error) => console.log(error));
-
-        console.log("setUserImage end");
+            .catch((error) => console.log(error.response.data));
 
     }
 
@@ -106,7 +121,7 @@ class AuthService {
         const id = this.getCurrentUser().id;
         const token = this.getCurrentUser().token;
         console.log("changePhoneNumber start");
-        axios
+        return axios
             .post(API_URL_USERS + id + '/phone',
                 {
                     phoneNumber: phoneNumber
@@ -118,7 +133,6 @@ class AuthService {
                 })
             .then((response) => console.log("response status on changePhoneNumber(): " + response.status))
             .catch((error) => console.log(error));
-        console.log("changePhoneNumber end");
     }
 
     changeUserEmail(email) {
@@ -126,7 +140,7 @@ class AuthService {
         const id = this.getCurrentUser().id;
         const token = this.getCurrentUser().token;
         console.log("changeEmail start");
-        axios
+        return axios
             .post(API_URL_USERS + id + '/email',
                 {
                     email: email
@@ -138,16 +152,38 @@ class AuthService {
                 })
             .then((response) => console.log("response status on changeEmail(): " + response.status))
             .catch((error) => console.log(error));
-
-        console.log("changeEmail end");
     }
+
+    changeUserImage(formData) {  //TODO - ask Artem
+        const id = this.getCurrentUser().id;
+        const token = this.getCurrentUser().token;
+        console.log(formData.get('image'))
+        return axios({
+            method: "post",
+            url: API_URL_USERS + id + "/image",
+            data: formData,
+            headers: {
+                "Content-Type": "multipart/form-data",
+                "Authorization": `Bearer ${token}`,
+            },
+
+        })
+            .then(function (response) {
+                console.log("response status on uploadIcon(): " + response.status)
+            })
+            .catch(function (error) {
+                console.log(error.response.data)
+            });
+    }
+
+    // cards methods
 
     setUserAllCards() {
         console.log("setUserAllCards start");
         const id = this.getCurrentUser().id;
         const token = this.getCurrentUser().token;
 
-        axios
+        return axios
             .get(API_URL_CARDS + id, {
                 headers: {
                     "Authorization": `Bearer ${token}`
@@ -161,14 +197,14 @@ class AuthService {
                 console.log(this.getUserAllCards())
             })
             .catch((error) => console.log(error));
-        console.log("setUserAllCards end");
     }
+
     setSelectedCardInfo(cardId) {
         console.log("setSelectedCardInfo start");
         const id = this.getCurrentUser().id;
         const token = this.getCurrentUser().token;
 
-        axios
+        return axios
             .get(API_URL_CARDS + id + "/" + cardId, {
                 headers: {
                     "Authorization": `Bearer ${token}`
@@ -182,49 +218,24 @@ class AuthService {
                 console.log(this.getSelectedCardInfo())
             })
             .catch((error) => console.log(error));
-        console.log("setSelectedCardInfo end");
-    }
-
-    setUserAllCredits() {
-        console.log("setUserAllCredits start");
-        const id = this.getCurrentUser().id;
-        const token = this.getCurrentUser().token;
-
-        axios
-            .get(API_URL_CREDIT + id, {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            })
-            .then((response) => {
-                console.log("RESPONSE IN setUserAllCredits : ")
-                console.log(JSON.stringify(response.data))
-                localStorage.setItem("userAllCredits", JSON.stringify(response.data))
-                console.log("Settled user all credits in localStorage : ")
-                console.log(this.getUserAllCredits())
-            })
-            .catch((error) => console.log(error));
-        console.log("setUserAllCredits end");
     }
 
     setCurrencyInfo(currency) {
         console.log("setCurrencyInfo start")
 
         var currencyInfo = "";
-        axios
+
+        return axios
             .get(API_URL_CURRENCY + currency)
             .then((response) => {
-                console.log("RESPONSE IN getCurrencyInfo : ")
-                console.log(JSON.stringify(response.data))
+                //console.log("RESPONSE IN getCurrencyInfo : ")
+                //console.log(JSON.stringify(response.data))
                 currencyInfo = JSON.stringify(response.data)
                 localStorage.setItem(currency, JSON.stringify(response.data))
-                console.log("Settled currency in localStorage : ")
+                //console.log("Settled currency in localStorage : ")
                 //console.log(this.getSelectedCardInfo())
             })
             .catch((error) => console.log(error));
-
-        console.log("setCurrencyInfo end");
-        return currencyInfo;
 
     }
 
@@ -233,7 +244,7 @@ class AuthService {
         const id = this.getCurrentUser().id;
         const token = this.getCurrentUser().token;
 
-        axios
+        return axios
             .post(API_URL_CARDS + id, {
                 currency: currency,
                 type: type,
@@ -247,8 +258,119 @@ class AuthService {
             .then((response) => console.log("response status on addCard(): " + response.status))
             .then(console.log(this.getUserAllCards()))
             .catch((error) => console.log(error));
-        console.log("addCard end");
     }
+
+
+    // payments methods
+    setSelectedCardPayments(cardId) {
+        console.log("setSelectedCardPayments start");
+        const id = this.getCurrentUser().id;
+        const token = this.getCurrentUser().token;
+
+        return axios
+            .get(API_URL_PAYMENT + id + "/" + cardId, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            .then((response) => {
+                console.log("RESPONSE IN setSelectedCardOutgoingPayments : ")
+                console.log(JSON.stringify(response.data))
+                localStorage.setItem("selectedCardPayments", JSON.stringify(response.data))
+                console.log("Settled SelectedCardPayments in localStorage : ")
+                console.log(this.getSelectedCardPayments())
+            })
+            .catch((error) => console.log(error.response.data));
+    }
+
+    sendPayment(senderCardNumber, receiverCardNumber, balance) {
+        console.log("sendPayment start");
+        const token = this.getCurrentUser().token;
+        console.log(token);
+        return axios
+            .post(API_URL_PAYMENT + 'sendPayment', {
+                senderCardNumber: senderCardNumber,
+                receiverCardNumber: receiverCardNumber,
+                balance: balance
+            }
+                , {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
+            .then((response) => {
+                console.log("response status on sendPayment(): " + response.status)
+            })
+            .catch((error) => console.log(error.response.data));
+    }
+
+    // credits methods
+
+    setUserAllCredits() {
+        console.log("setUserAllCredits start");
+        const id = this.getCurrentUser().id;
+        const token = this.getCurrentUser().token;
+
+        return axios
+            .get(API_URL_CREDIT + id, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            .then((response) => {
+                console.log("RESPONSE IN setUserAllCredits : ")
+                console.log(JSON.stringify(response.data))
+                localStorage.setItem("userAllCredits", JSON.stringify(response.data))
+                console.log("Settled user all credits in localStorage : ")
+                console.log(this.getUserAllCredits())
+            })
+            .catch((error) => console.log(error));
+    }
+
+    addCredit(creditTypeId, value, cardNumber) {
+        console.log("addCredit start");
+        const token = this.getCurrentUser().token;
+
+        return axios
+            .post(API_URL_CREDIT + "request", {
+                creditTypeId: creditTypeId,
+                value: value,
+                cardNumber: cardNumber,
+            },
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
+            .then((response) => {
+                console.log("response status on addCredit(): " + response.status);
+                console.log(this.getUserAllCredits())
+            })
+            .catch((error) => console.log(error.response.data));
+    }
+
+    repayCredit(creditId, value, cardNumber) {
+        const id = this.getCurrentUser().id;
+        const token = this.getCurrentUser().token;
+
+        return axios
+            .post(API_URL_CREDIT + id + "/" + creditId + "/repay", {
+                value: value,
+                cardNumber: cardNumber,
+            },
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
+            .then((response) => {
+                console.log("response status on repayCredit(): " + response.status);
+                console.log(this.getUserAllCredits());
+            })
+            .catch((error) => console.log(error.response.data));
+    }
+
+    //all get methods
 
     getCurrentUser() {
         return JSON.parse(localStorage.getItem("user"));
@@ -271,6 +393,11 @@ class AuthService {
     getCurrencyInfo(currency) {
         return JSON.parse(localStorage.getItem(currency));
     }
+    getSelectedCardPayments() {
+        return JSON.parse(localStorage.getItem("selectedCardPayments"));
+    }
+
+    //all remove methods
 
     removeUserAllCards() {
         localStorage.removeItem("userAllCards");
@@ -279,11 +406,10 @@ class AuthService {
         localStorage.removeItem("selectedCardInfo");
     }
 
-    // logOut(){
-    //     localStorage.clear();
-    // }
+    logOut() {
+        localStorage.clear();
+    }
 
 }
 
 export default new AuthService();
-

@@ -4,7 +4,7 @@ import './MainPageFooter.css';
 
 const MainPageFooter = () => {
     return (
-        <footer className="footer">
+        <footer className="footer__main">
             <Link to='/rules&terms' className="footerLink">Правила та умови</Link>
             <Link to='/security' className="footerLink">Безпека</Link>
         </footer>
